@@ -19,14 +19,13 @@ public class BinarySearchTree<T extends Comparable<? super T> > {
 
     // TODO: est-ce qu'un item fais partie de l'arbre
     // O(log(n))
-    public boolean contains(T item) {
-        return root.contains(item);
-    }
+    public boolean contains(T item) { return root == null ? false : root.contains(item); }
 
     // TODO: trouver la hauteur de l'arbre
     // O(n)
     public int getHeight() {
-        return root.getHeight();
+        int height = root.getHeight();
+        return height > 0 ? height : 0;
     }
 
     // TODO: placer dans une liste les items de l'arbre en ordre
