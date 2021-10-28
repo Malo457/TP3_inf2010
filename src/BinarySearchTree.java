@@ -10,15 +10,11 @@ public class BinarySearchTree<T extends Comparable<? super T> > {
     public BinarySearchTree() { }
 
     // TODO: initialisation
-    public BinarySearchTree(T item) {
-        return;
-    }
+    public BinarySearchTree(T item) { root = new BinaryNode(item); }
 
     // TODO: on insere un nouvel item a partir de la racine
     // O(log(n))
-    public void insert(T item) {
-        return;
-    }
+    public void insert(T item) { root.insert(item); }
 
     // TODO: est-ce qu'un item fais partie de l'arbre
     // O(log(n))
