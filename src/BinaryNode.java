@@ -36,7 +36,7 @@ public class BinaryNode<T extends Comparable<? super T> > {
     public boolean contains(T item) {
         if (data == item) return true;
         if (data.compareTo(item) > 0 && left != null) return left.contains(item);
-        else if (data.compareTo(item) < 0 && right != null) return right.contains(item);
+        if (data.compareTo(item) < 0 && right != null) return right.contains(item);
         return false;
     }
 
