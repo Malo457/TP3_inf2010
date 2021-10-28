@@ -20,14 +20,12 @@ public class BinaryNode<T extends Comparable<? super T> > {
 
     // TODO: on ajoute une nouvelle donnee au bon endroit
     // O(log(n))
-    public void insert(T item)
-    {
+    public void insert(T item) {
        if (data.compareTo(item) >= 0) {
            if (left == null) left = new BinaryNode<T>(item);
            else left.insert(item);
        }
-
-       if (data.compareTo(item) < 0) {
+       else {
            if (right == null) right = new BinaryNode<T>(item);
            else right.insert(item);
        }
@@ -38,7 +36,7 @@ public class BinaryNode<T extends Comparable<? super T> > {
     public boolean contains(T item) {
         if (data == item) return true;
         if (data.compareTo(item) > 0 && left != null) return left.contains(item);
-        if (data.compareTo(item) < 0 && right != null) return right.contains(item);
+        else if (data.compareTo(item) < 0 && right != null) return right.contains(item);
         return false;
     }
 
