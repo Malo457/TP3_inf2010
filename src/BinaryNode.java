@@ -22,12 +22,12 @@ public class BinaryNode<T extends Comparable<? super T> > {
     // O(log(n))
     public void insert(T item)
     {
-       if (data.compareTo(item) < 0) {
+       if (data.compareTo(item) > 0) {
            if (left == null) left = new BinaryNode<T>(item);
            else left.insert(item);
        }
 
-       if (data.compareTo(item) > 0) {
+       if (data.compareTo(item) < 0) {
            if (right == null) right = new BinaryNode<T>(item);
            else right.insert(item);
        }
@@ -39,8 +39,8 @@ public class BinaryNode<T extends Comparable<? super T> > {
         boolean itemFound = false;
         while (this != null && !itemFound) {
             if (data == item) itemFound = true;
-            if (data.compareTo(item) < 0) left.contains(item);
-            if (data.compareTo(item) > 0) right.contains(item);
+            if (data.compareTo(item) > 0) return left.contains(item);
+            if (data.compareTo(item) < 0) return right.contains(item);
         }
         return itemFound;
     }
@@ -49,15 +49,17 @@ public class BinaryNode<T extends Comparable<? super T> > {
     // O(n)
     public int getHeight() { // notes de cours
         if (this == null) return -1;
-        else return 1 + Math.max(left.getHeight(), right.getHeight());
+        else return 1 + Math.max(left.getHeight(), right.getHeight()); // left et right ne doivent pas etre null
     }
 
     // TODO: l'ordre d'insertion dans la liste est l'ordre logique
     // de manière que le plus petit item sera le premier inseré
     // O(n)
-    public void fillListInOrder(List<BinaryNode<T>> result) {
-        result.add(left);
-        result.add(this);
-        result.add(right);
+    public void fillListInOrder(List<BinaryNode<T>> result) { // intra 18a
+        if (this != null) {
+            if (left != null) left.fillListInOrder(result);
+            result.add(this);
+            if (right != null) right.fillListInOrder(result);
+        }
     }
 }
