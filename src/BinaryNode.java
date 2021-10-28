@@ -22,7 +22,7 @@ public class BinaryNode<T extends Comparable<? super T> > {
     // O(log(n))
     public void insert(T item)
     {
-       if (data.compareTo(item) > 0) {
+       if (data.compareTo(item) >= 0) {
            if (left == null) left = new BinaryNode<T>(item);
            else left.insert(item);
        }
@@ -36,20 +36,21 @@ public class BinaryNode<T extends Comparable<? super T> > {
     // TODO: est-ce que l'item fais partie du noeuds courant
     // O(log(n))
     public boolean contains(T item) {
-        boolean itemFound = false;
-        while (this != null && !itemFound) {
-            if (data == item) itemFound = true;
-            if (data.compareTo(item) > 0) return left.contains(item);
-            if (data.compareTo(item) < 0) return right.contains(item);
-        }
-        return itemFound;
+        if (data == item) return true;
+        if (data.compareTo(item) > 0 && left != null) return left.contains(item);
+        if (data.compareTo(item) < 0 && right != null) return right.contains(item);
+        return false;
     }
 
     // TODO: on retourne la maximale de l'arbre
     // O(n)
-    public int getHeight() { // notes de cours
-        if (this == null) return -1;
-        else return 1 + Math.max(left.getHeight(), right.getHeight()); // left et right ne doivent pas etre null
+    public int getHeight() {
+        int heightL = 0;
+        int heightR = 0;
+        if (left != null) heightL = left.getHeight();
+        if (right != null) heightR = right.getHeight();
+
+        return (heightL == 0 && heightR == 0) ? -1 : 1 + Math.max(heightL, heightR);
     }
 
     // TODO: l'ordre d'insertion dans la liste est l'ordre logique
