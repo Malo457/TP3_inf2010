@@ -36,8 +36,7 @@ public class BinaryNode<T extends Comparable<? super T> > {
     public boolean contains(T item) {
         if (data.compareTo(item) == 0) return true;
         else if (data.compareTo(item) > 0 && left != null) return left.contains(item);
-        else if (data.compareTo(item) < 0 && right != null) return right.contains(item);
-        return false;
+        else return right.contains(item);
     }
 
     // TODO: on retourne la maximale de l'arbre
@@ -54,11 +53,9 @@ public class BinaryNode<T extends Comparable<? super T> > {
     // TODO: l'ordre d'insertion dans la liste est l'ordre logique
     // de manière que le plus petit item sera le premier inseré
     // O(n)
-    public void fillListInOrder(List<BinaryNode<T>> result) { // intra 18a
-        if (this != null) {
-            if (left != null) left.fillListInOrder(result);
-            result.add(this);
-            if (right != null) right.fillListInOrder(result);
-        }
+    public void fillListInOrder(List<BinaryNode<T>> result) {
+        if (left != null) left.fillListInOrder(result);
+        result.add(this);
+        if (right != null) right.fillListInOrder(result);
     }
 }
