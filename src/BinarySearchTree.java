@@ -48,11 +48,12 @@ public class BinarySearchTree<T extends Comparable<? super T> > {
         result += "]";
 
         return result;
-        /*Object[] array = new Object[0];
+        /*T[] array = (T[]) new Object[list.size()];
         int i = 0;
-        for (BinaryNode<T> node : list) {
+        for (BinaryNode<T> node : list){
             array[i++] = node.getData();
         }
+
         return Arrays.toString(array);*/
     }
 }

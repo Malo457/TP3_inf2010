@@ -36,7 +36,8 @@ public class BinaryNode<T extends Comparable<? super T> > {
     public boolean contains(T item) {
         if (data.compareTo(item) == 0) return true;
         else if (data.compareTo(item) > 0 && left != null) return left.contains(item);
-        else return right.contains(item);
+        else if (right != null) return right.contains(item);
+        return false;
     }
 
     // TODO: on retourne la maximale de l'arbre
