@@ -54,9 +54,11 @@ public class BinaryNode<T extends Comparable<? super T> > {
     // TODO: l'ordre d'insertion dans la liste est l'ordre logique
     // de manière que le plus petit item sera le premier inseré
     // O(n)
-    public void fillListInOrder(List<BinaryNode<T>> result) {
-        if (left != null) left.fillListInOrder(result);
-        result.add(this);
-        if (right != null) right.fillListInOrder(result);
+    public void fillListInOrder(List<BinaryNode<T>> result) { // intra 18a
+        if (this != null) {
+            if (left != null) left.fillListInOrder(result);
+            result.add(this);
+            if (right != null) right.fillListInOrder(result);
+        }
     }
 }
