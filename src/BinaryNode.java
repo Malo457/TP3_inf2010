@@ -44,7 +44,6 @@ public class BinaryNode<T extends Comparable<? super T> > {
         int heightR = 0;
         if (left != null) heightL = left.getHeight();
         if (right != null) heightR = right.getHeight();
-
         return (heightL == 0 && heightR == 0) ? -1 : 1 + Math.max(heightL, heightR);
     }
 
